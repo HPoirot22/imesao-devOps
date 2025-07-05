@@ -1,0 +1,19 @@
+# Define os serviços (contêineres) que compõem sua aplicação.
+services:
+  # Nome do serviço da sua API. Você pode chamar de 'api', 'web', etc.
+  app:
+    # Instrui o Compose a construir a imagem a partir do Dockerfile
+    # no diretório atual ('.').
+    build: .
+    container_name: api
+    # Mapeia a porta 8000 do seu computador (host) para a porta 8000 do contêiner,
+    # permitindo que você acesse a API em http://localhost:8000.
+    ports:
+      - "8000:8000"
+    # Monta o diretório atual ('.') no diretório '/app' dentro do contêiner.
+    # Isso é crucial para o desenvolvimento: qualquer alteração que você fizer
+    # nos seus arquivos .py no seu computador será refletida instantaneamente
+    # dentro do contêiner, e o uvicorn com --reload reiniciará o servidor.
+    volumes:
+      - .:/app
+    
